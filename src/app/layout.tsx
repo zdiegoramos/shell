@@ -1,26 +1,37 @@
 import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
 
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+
+export const viewport: Viewport = {
+	width: "device-width",
+	initialScale: 1,
+	maximumScale: 1,
+	viewportFit: "cover",
+	userScalable: false,
+};
 
 export const metadata: Metadata = {
 	title: "App Shell",
 	description: "App Shell",
 	icons: [{ rel: "icon", url: "/favicon.ico" }],
+	appleWebApp: {
+		capable: true,
+	},
+	other: {
+		"apple-mobile-web-app-capable": "yes",
+		"mobile-web-app-capable": "yes",
+	},
 };
 
 export default function RootLayout({
 	children,
 }: Readonly<{ children: React.ReactNode }>) {
 	return (
-		<html
-			className="overscroll-none [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-			lang="en"
-			suppressHydrationWarning
-		>
+		<html className="overscroll-none" lang="en" suppressHydrationWarning>
 			<body
 				className={cn(
-					"relative overscroll-none bg-pink-400",
+					"mt-[env(safe-area-inset-top)] mr-[env(safe-area-inset-right)] mb-[env(safe-area-inset-bottom)] ml-[env(safe-area-inset-left)]",
 					// ADD MARGINS AROUND THE BODY TO ENSURE THE CONTENT
 					// OCCUPIES THE VISIBLE AREA. THE NAV, FOOTER AND LEFT SIDE
 					// WILL BE POSITIONED OUTSIDE OF THIS AREA AS FIXED ELEMENTS
@@ -53,12 +64,9 @@ export default function RootLayout({
 				)}
 			>
 				{/* Make the safe areas top/bottom the same color as the background */}
-				<div className="pointer-events-none fixed top-0 right-0 left-0 z-99999 h-[env(safe-area-inset-top)] bg-background" />
-				<div className="pointer-events-none fixed right-0 bottom-0 left-0 z-99999 h-[env(safe-area-inset-bottom)] bg-background" />
-				{/* Calculate the margins around the content */}
-				<div className="mt-[env(safe-area-inset-top)] mr-[env(safe-area-inset-right)] mb-[env(safe-area-inset-bottom)] ml-[env(safe-area-inset-left)]">
-					{children}
-				</div>
+				<div className="pointer-events-none fixed top-0 right-0 left-0 z-99999 h-[env(safe-area-inset-top)] bg-blue-800" />
+				<div className="pointer-events-none fixed right-0 bottom-0 left-0 z-99999 h-[env(safe-area-inset-bottom)] bg-blue-800" />
+				{children}
 			</body>
 		</html>
 	);
