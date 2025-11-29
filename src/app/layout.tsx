@@ -29,6 +29,13 @@ export default function RootLayout({
 					"has-data-[left-side=expanded]:ml-52",
 					"has-data-[left-side=collapsed]:ml-16",
 
+					// RESPONSIVE NAVBAR AT TOP AND BOTTOM
+					"**:data-responsive-nav:h-16",
+					"has-data-responsive-nav:mb-16",
+					"md:has-data-responsive-nav:mt-16 md:has-data-responsive-nav:mb-0",
+					"has-data-responsive-nav:has-data-[left-side=expanded]:**:data-responsive-nav:ml-52",
+					"has-data-responsive-nav:has-data-[left-side=collapsed]:**:data-responsive-nav:ml-16",
+
 					// PASS DOWN THE DIMENSIONS FOR THE NAV, FOOTER AND LEFT SIDE
 					// TOP NAVIGATION HEIGHT
 					"**:data-nav:h-16",
