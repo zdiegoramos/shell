@@ -56,13 +56,13 @@ export function TopNav() {
 }
 ```
 
-3. Use your `<Wireframe/>` components.
+3. Wrap your content using the `<WireframeContent/>` component and use your `<Wireframe/>` components.
 
 ```tsx page.tsx
 import { WireframeContent } from "@/components/ui/wireframe";
 import { TopNav } from "@/components/wireframe/top-nav";
 
-export default function HomePage() {
+export default function Page() {
 	return (
 		<WireframeContent>
 			<TopNav />
