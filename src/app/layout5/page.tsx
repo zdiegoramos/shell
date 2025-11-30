@@ -7,7 +7,6 @@ export default function HomePage() {
 			<div className="h-20 w-full bg-red-300">HEADER</div>
 			<StickyNav />
 			<Sidebar />
-			<div className="sticky top-2 h-20 w-20 bg-amber-500">hello</div>
 			<div className="h-[1000px] border-2 border-black bg-white px-2 font-bold">
 				CONTENT
 			</div>
