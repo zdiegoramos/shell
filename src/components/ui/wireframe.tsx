@@ -21,9 +21,8 @@ function Wireframe({
 				"has-data-[wf-right-sidebar=collapsed]:mr-(--right-sidebar-width-collapsed)",
 
 				// RESPONSIVE NAVBAR HEIGHT AND MARGINS
-				"**:data-wf-responsive-nav:h-(--bottom-nav-height)",
 				"has-data-wf-responsive-nav:mb-(--bottom-nav-height)",
-				"md:has-data-wf-responsive-nav:mt-(--top-nav-height) md:has-data-wf-responsive-nav:mb-0 md:**:data-wf-responsive-nav:h-(--top-nav-height)",
+				"md:has-data-wf-responsive-nav:mt-(--top-nav-height) md:has-data-wf-responsive-nav:mb-0",
 				// ADD SIDEBAR MARGIN TO RESPONSIVE NAV IF SIDEBAR EXISTS
 				"has-data-wf-responsive-nav:has-data-[wf-left-sidebar=expanded]:**:data-wf-responsive-nav:ml-(--left-sidebar-width-expanded)",
 				"has-data-wf-responsive-nav:has-data-[wf-right-sidebar=expanded]:**:data-wf-responsive-nav:mr-(--right-sidebar-width-expanded)",
@@ -32,28 +31,18 @@ function Wireframe({
 
 				// PASS DOWN THE DIMENSIONS FOR THE NAV, FOOTER AND SIDEBAR
 				// TOP NAVIGATION HEIGHT
-				"**:data-wf-top-nav:h-(--top-nav-height)",
-				"**:data-wf-top-nav:top-0",
 				// ADD SIDEBAR MARGIN TO TOP NAV IF SIDEBAR EXISTS
 				"has-data-wf-top-nav:has-data-[wf-left-sidebar=expanded]:**:data-wf-top-nav:ml-(--left-sidebar-width-expanded)",
 				"has-data-wf-top-nav:has-data-[wf-right-sidebar=expanded]:**:data-wf-top-nav:mr-(--right-sidebar-width-expanded)",
 				"has-data-wf-top-nav:has-data-[wf-left-sidebar=collapsed]:**:data-wf-top-nav:ml-(--left-sidebar-width-collapsed)",
 				"has-data-wf-top-nav:has-data-[wf-right-sidebar=collapsed]:**:data-wf-top-nav:mr-(--right-sidebar-width-collapsed)",
 				// BOTTOM FOOTER HEIGHT
-				"**:data-wf-bottom-nav:h-(--bottom-nav-height)",
-				"**:data-wf-bottom-nav:bottom-0",
 				// ADD SIDEBAR MARGIN TO FOOTER IF SIDEBAR EXISTS
 				"has-data-wf-bottom-nav:has-data-[wf-left-sidebar=expanded]:**:data-wf-bottom-nav:ml-(--left-sidebar-width-expanded)",
 				"has-data-wf-bottom-nav:has-data-[wf-right-sidebar=expanded]:**:data-wf-bottom-nav:mr-(--right-sidebar-width-expanded)",
 				"has-data-wf-bottom-nav:has-data-[wf-left-sidebar=collapsed]:**:data-wf-bottom-nav:ml-(--left-sidebar-width-collapsed)",
 				"has-data-wf-bottom-nav:has-data-[wf-right-sidebar=collapsed]:**:data-wf-bottom-nav:mr-(--right-sidebar-width-collapsed)",
 				// SIDEBAR WIDTH AND POSITIONING
-				"**:data-wf-left-sidebar:left-0",
-				"**:data-wf-right-sidebar:right-0",
-				"**:data-[wf-left-sidebar=expanded]:w-(--left-sidebar-width-expanded)",
-				"**:data-[wf-right-sidebar=expanded]:w-(--right-sidebar-width-expanded)",
-				"**:data-[wf-left-sidebar=collapsed]:w-(--left-sidebar-width-collapsed)",
-				"**:data-[wf-right-sidebar=collapsed]:w-(--right-sidebar-width-collapsed)",
 
 				// CONTENT
 				"has-data-wf-top-nav:has-data-wf-bottom-nav:min-h-[calc(100vh-var(--top-nav-height)-var(--bottom-nav-height))]",
@@ -106,7 +95,13 @@ function WireframeNav({
 }) {
 	return (
 		<div
-			className={cn("fixed inset-x-0 z-50", className)}
+			className={cn(
+				"fixed inset-x-0 z-50",
+				position === "top"
+					? "top-0 h-(--top-nav-height)"
+					: "bottom-0 h-(--bottom-nav-height)",
+				className,
+			)}
 			{...{
 				...props,
 				[`data-wf-${position}-nav`]: "",
@@ -125,7 +120,7 @@ function WireframeResponsiveNav({
 	return (
 		<div
 			className={cn(
-				"fixed inset-x-0 bottom-0 z-50 md:top-0 md:bottom-auto",
+				"fixed inset-x-0 bottom-0 z-50 h-(--bottom-nav-height) md:top-0 md:bottom-auto md:h-(--top-nav-height)",
 				className,
 			)}
 			data-wf-responsive-nav
@@ -152,6 +147,19 @@ function WireframeCollapsableSidebar({
 		<div
 			className={cn(
 				"fixed inset-y-0 z-50 overflow-scroll [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+				position === "left"
+					? [
+							"left-0",
+							collapsed
+								? "w-(--left-sidebar-width-collapsed)"
+								: "w-(--left-sidebar-width-expanded)",
+						]
+					: [
+							"right-0",
+							collapsed
+								? "w-(--right-sidebar-width-collapsed)"
+								: "w-(--right-sidebar-width-expanded)",
+						],
 				className,
 			)}
 			{...{
