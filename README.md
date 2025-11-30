@@ -101,3 +101,19 @@ export default function Layout({
 ```
 
 Warning: If you have multiple `<Wireframe/>`s, you can't return a `<Wireframe/>` at the root layout because if will be in conflict with other `<Wireframe/>`s.
+
+## Nested Wireframes
+
+Nested wireframes are not recommended, but if you need to have nested `<Wireframe/>`s duplicate the `<Wireframe/>` component and rename the namespace `wf`, for all `data-` attirbutes. This will prevent conflicts between the wireframes.
+
+Update all instances of the following:
+
+```
+data-wf-${position}-sidebar
+data-wf-responsive-nav
+data-wf-${position}-nav
+data-wf-sticky-nav
+data-wf-content
+```
+
+In the `<Wireframe/>` config and all the `<Wireframe/>` components.
