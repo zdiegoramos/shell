@@ -2,7 +2,25 @@
 
 The `<Wireframe/>` component ensures that all elements are positioned correctly in the viewport, based on the components present on each route. If `/new` has a left sidebar and a top navbar, the content will be moved down and right, using margins, to prevent the positioned components from covering the content. 
 
-Instructions
+Installation
+
+1. Add the `wireframe.tsx` file to your shadcn ui folder `@/components/ui`
+
+2. Extend your TailwindCSS theme variables
+
+```css
+@theme {
+	--sticky-nav-height: calc(var(--spacing) * 12);
+	--top-nav-height: calc(var(--spacing) * 16);
+	--bottom-nav-height: calc(var(--spacing) * 8);
+	--left-sidebar-width-collapsed: calc(var(--spacing) * 16);
+	--right-sidebar-width-collapsed: calc(var(--spacing) * 16);
+	--left-sidebar-width-expanded: calc(var(--spacing) * 52);
+	--right-sidebar-width-expanded: calc(var(--spacing) * 52);
+}
+```
+
+Usage
 
 1. Add the `<Wireframe/>` component to your layout. 
 
