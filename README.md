@@ -4,7 +4,7 @@ The `<Wireframe/>` component ensures that all elements are positioned correctly 
 
 ## Installation
 
-1. Add the [`wireframe.tsx`](/src/components/ui/wireframe.tsx) file to your shadcn ui folder `@/components/ui`
+1. Add the [`wireframe.tsx`](/src/components/ui/wireframe/index.tsx) file to your shadcn ui folder `@/components/ui`
 
 2. Set the desired dimensions and offsets for your wireframe in the style tag of the `<Wireframe>` component.
 
