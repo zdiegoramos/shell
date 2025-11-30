@@ -17,11 +17,14 @@ export function Sidebar() {
 
 	return (
 		<WireframeCollapsableSidebar collapsed={collapsed} position={position}>
-			<div className="flex min-h-full w-full items-center justify-between bg-pink-500/40">
+			<div className="bg-(image:--crossed-gradient) flex min-h-full w-full items-center justify-center bg-pink-500/40">
 				<div className="flex flex-col gap-4">
 					<button onClick={handleClick} type="button">
 						Click me
 					</button>
+					<div className="border-2 border-black bg-white px-2 font-bold">
+						SIDEBAR
+					</div>
 					<select
 						onChange={(e) =>
 							setPosition(e.target.value as WireframeCollapsableSidebarPosition)

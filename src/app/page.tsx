@@ -3,10 +3,12 @@ import { Sidebar } from "@/components/wireframe/sidebar";
 
 export default function HomePage() {
 	return (
-		<main className="bg-(image:--crossed-gradient) flex min-h-full items-center justify-center">
+		<main className="bg-(image:--crossed-gradient) flex min-h-full items-center justify-center bg-stone-100">
 			<ResponsiveNav />
 			<Sidebar />
-			<div className="border-2 border-black bg-white px-2">CONTENT</div>
+			<div className="border-2 border-black bg-white px-2 font-bold">
+				CONTENT
+			</div>
 		</main>
 	);
 }

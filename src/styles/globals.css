@@ -15,6 +15,14 @@
 	--left-sidebar-width-expanded: calc(var(--spacing) * 52);
 	--right-sidebar-width-expanded: calc(var(--spacing) * 52);
 
+	--diagonal-lines: repeating-linear-gradient(
+		45deg,
+		var(--border),
+		var(--border) 1px,
+		transparent 1px,
+		transparent 10px
+	);
+
 	--crossed-gradient:
 		linear-gradient(
 			to top left,
