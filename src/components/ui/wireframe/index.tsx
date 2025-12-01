@@ -18,14 +18,14 @@ const defaultConfig: ClassValue[] = [
 	// MOBILE
 	"has-data-wf-responsive-nav:**:data-wf-content:pb-[calc(var(--bottom-nav-height)+var(--bottom-nav-offset))]",
 	// DESKTOP
-	"md:has-data-wf-responsive-nav:mt-[calc(var(--top-nav-height)+var(--top-nav-offset))] md:has-data-wf-responsive-nav:**:data-wf-content:pb-0",
+	"min-wf-responsive-nav:has-data-wf-responsive-nav:mt-[calc(var(--top-nav-height)+var(--top-nav-offset))] min-wf-responsive-nav:has-data-wf-responsive-nav:**:data-wf-content:pb-0",
 	// SIDEBAR WIDTH AND POSITIONING
 
 	// CONTENT
 	"has-data-wf-top-nav:has-data-wf-bottom-nav:min-h-[calc(100vh-var(--top-nav-height)-var(--bottom-nav-height)-var(--top-nav-offset)-var(--bottom-nav-offset))]",
 	"has-data-wf-top-nav:min-h-[calc(100vh-var(--top-nav-height)-var(--top-nav-offset))]",
 	"has-data-wf-bottom-nav:min-h-[calc(100vh-var(--bottom-nav-height)-var(--bottom-nav-offset))]",
-	"has-data-wf-responsive-nav:min-h-[calc(100vh-var(--bottom-nav-height)-var(--bottom-nav-offset))] md:has-data-wf-responsive-nav:min-h-[calc(100vh-var(--top-nav-height)-var(--top-nav-offset))]",
+	"has-data-wf-responsive-nav:min-h-[calc(100vh-var(--bottom-nav-height)-var(--bottom-nav-offset))] min-wf-responsive-nav:has-data-wf-responsive-nav:min-h-[calc(100vh-var(--top-nav-height)-var(--top-nav-offset))]",
 	// HACK TO FIX CHILDREN HEIGHT 100% ISSUE
 	"relative",
 ];
@@ -46,15 +46,15 @@ const defaultVars: React.CSSProperties = {
 const responsiveNavCornersConfig = {
 	navbar: {
 		left: [
-			"has-data-wf-responsive-nav:has-data-wf-left-sidebar:**:data-wf-left-sidebar:mb-(--bottom-nav-height) md:has-data-wf-responsive-nav:has-data-wf-left-sidebar:**:data-wf-left-sidebar:mt-(--top-nav-height) md:has-data-wf-responsive-nav:has-data-wf-left-sidebar:**:data-wf-left-sidebar:mb-0",
+			"has-data-wf-responsive-nav:has-data-wf-left-sidebar:**:data-wf-left-sidebar:mb-(--bottom-nav-height) min-wf-responsive-nav:has-data-wf-responsive-nav:has-data-wf-left-sidebar:**:data-wf-left-sidebar:mt-(--top-nav-height) min-wf-responsive-nav:has-data-wf-responsive-nav:has-data-wf-left-sidebar:**:data-wf-left-sidebar:mb-0",
 		],
 		right: [
-			"has-data-wf-responsive-nav:has-data-wf-right-sidebar:**:data-wf-right-sidebar:mb-(--bottom-nav-height) md:has-data-wf-responsive-nav:has-data-wf-right-sidebar:**:data-wf-right-sidebar:mt-(--top-nav-height) md:has-data-wf-responsive-nav:has-data-wf-right-sidebar:**:data-wf-right-sidebar:mb-0",
+			"has-data-wf-responsive-nav:has-data-wf-right-sidebar:**:data-wf-right-sidebar:mb-(--bottom-nav-height) min-wf-responsive-nav:has-data-wf-responsive-nav:has-data-wf-right-sidebar:**:data-wf-right-sidebar:mt-(--top-nav-height) min-wf-responsive-nav:has-data-wf-responsive-nav:has-data-wf-right-sidebar:**:data-wf-right-sidebar:mb-0",
 		],
 	},
 	sidebar: {
 		left: [
-			"has-data-wf-responsive-nav:has-data-[wf-left-sidebar=expanded]:**:data-wf-responsive-nav:ml-(--left-sidebar-width-expanded) md:",
+			"has-data-wf-responsive-nav:has-data-[wf-left-sidebar=expanded]:**:data-wf-responsive-nav:ml-(--left-sidebar-width-expanded)",
 			"has-data-wf-responsive-nav:has-data-[wf-left-sidebar=collapsed]:**:data-wf-responsive-nav:ml-(--left-sidebar-width-collapsed)",
 		],
 		right: [
@@ -214,7 +214,7 @@ function WireframeResponsiveNav({
 	return (
 		<div
 			className={cn(
-				"fixed inset-x-0 bottom-(--bottom-nav-offset) z-50 h-(--bottom-nav-height) md:top-(--top-nav-offset) md:bottom-auto md:h-(--top-nav-height)",
+				"fixed inset-x-0 bottom-(--bottom-nav-offset) z-50 h-(--bottom-nav-height) min-wf-responsive-nav:top-(--top-nav-offset) min-wf-responsive-nav:bottom-auto min-wf-responsive-nav:h-(--top-nav-height)",
 				className,
 			)}
 			data-wf-responsive-nav
