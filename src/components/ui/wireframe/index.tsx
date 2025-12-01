@@ -64,45 +64,37 @@ const responsiveNavCornersConfig = {
 	},
 } as const;
 
-const cornersConfig = {
+const navCornersConfig = {
 	navbar: {
 		topLeft: [
 			"has-data-wf-top-nav:has-data-wf-left-sidebar:**:data-wf-left-sidebar:mt-(--top-nav-height)",
-			responsiveNavCornersConfig.navbar.left,
 		],
 		topRight: [
 			"has-data-wf-top-nav:has-data-wf-right-sidebar:**:data-wf-right-sidebar:mt-(--top-nav-height)",
-			responsiveNavCornersConfig.navbar.right,
 		],
 		bottomLeft: [
 			"has-data-wf-bottom-nav:has-data-wf-left-sidebar:**:data-wf-left-sidebar:mb-(--bottom-nav-height)",
-			responsiveNavCornersConfig.navbar.left,
 		],
 		bottomRight: [
 			"has-data-wf-bottom-nav:has-data-wf-right-sidebar:**:data-wf-right-sidebar:mb-(--bottom-nav-height)",
-			responsiveNavCornersConfig.navbar.right,
 		],
 	},
 	sidebar: {
 		topLeft: [
 			"has-data-wf-top-nav:has-data-[wf-left-sidebar=expanded]:**:data-wf-top-nav:ml-(--left-sidebar-width-expanded)",
 			"has-data-wf-top-nav:has-data-[wf-left-sidebar=collapsed]:**:data-wf-top-nav:ml-(--left-sidebar-width-collapsed)",
-			responsiveNavCornersConfig.sidebar.left,
 		],
 		topRight: [
 			"has-data-wf-top-nav:has-data-[wf-right-sidebar=expanded]:**:data-wf-top-nav:mr-(--right-sidebar-width-expanded)",
 			"has-data-wf-top-nav:has-data-[wf-right-sidebar=collapsed]:**:data-wf-top-nav:mr-(--right-sidebar-width-collapsed)",
-			responsiveNavCornersConfig.sidebar.right,
 		],
 		bottomLeft: [
 			"has-data-wf-bottom-nav:has-data-[wf-left-sidebar=expanded]:**:data-wf-bottom-nav:ml-(--left-sidebar-width-expanded)",
 			"has-data-wf-bottom-nav:has-data-[wf-left-sidebar=collapsed]:**:data-wf-bottom-nav:ml-(--left-sidebar-width-collapsed)",
-			responsiveNavCornersConfig.sidebar.left,
 		],
 		bottomRight: [
 			"has-data-wf-bottom-nav:has-data-[wf-right-sidebar=expanded]:**:data-wf-bottom-nav:mr-(--right-sidebar-width-expanded)",
 			"has-data-wf-bottom-nav:has-data-[wf-right-sidebar=collapsed]:**:data-wf-bottom-nav:mr-(--right-sidebar-width-collapsed)",
-			responsiveNavCornersConfig.sidebar.right,
 		],
 	},
 } as const;
@@ -114,26 +106,35 @@ function Wireframe({
 	children,
 	config,
 	vars,
-	corners,
+	navCorners,
+	responsiveNavCorners,
 	...props
 }: React.ComponentProps<"div"> & {
 	config?: ClassValue[];
 	vars?: React.CSSProperties;
-	corners?: {
+	navCorners?: {
 		topLeft?: WireframeCornerOptions;
 		topRight?: WireframeCornerOptions;
 		bottomLeft?: WireframeCornerOptions;
 		bottomRight?: WireframeCornerOptions;
+	};
+	responsiveNavCorners?: {
+		left?: WireframeCornerOptions;
+		right?: WireframeCornerOptions;
 	};
 }) {
 	return (
 		<div
 			className={cn(
 				...(config ?? defaultConfig),
-				cornersConfig[corners?.topLeft ?? "sidebar"].topLeft,
-				cornersConfig[corners?.topRight ?? "sidebar"].topRight,
-				cornersConfig[corners?.bottomLeft ?? "sidebar"].bottomLeft,
-				cornersConfig[corners?.bottomRight ?? "sidebar"].bottomRight,
+				navCornersConfig[navCorners?.topLeft ?? "sidebar"].topLeft,
+				navCornersConfig[navCorners?.topRight ?? "sidebar"].topRight,
+				navCornersConfig[navCorners?.bottomLeft ?? "sidebar"].bottomLeft,
+				navCornersConfig[navCorners?.bottomRight ?? "sidebar"].bottomRight,
+				responsiveNavCornersConfig[responsiveNavCorners?.left ?? "sidebar"]
+					.left,
+				responsiveNavCornersConfig[responsiveNavCorners?.right ?? "sidebar"]
+					.right,
 				className,
 			)}
 			style={{ ...(vars ?? defaultVars) }}
