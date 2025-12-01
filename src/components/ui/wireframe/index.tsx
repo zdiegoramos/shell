@@ -30,7 +30,36 @@ const defaultConfig: ClassValue[] = [
 	"relative",
 ];
 
-const defaultVars: React.CSSProperties = {
+const wireframeCssVariables = [
+	"--sticky-nav-height",
+	"--sticky-nav-top-offset",
+	"--top-nav-height",
+	"--top-nav-top-offset",
+	"--top-nav-left-offset",
+	"--top-nav-right-offset",
+	"--top-nav-bottom-offset",
+	"--bottom-nav-height",
+	"--bottom-nav-top-offset",
+	"--bottom-nav-left-offset",
+	"--bottom-nav-right-offset",
+	"--bottom-nav-bottom-offset",
+	"--left-sidebar-width-collapsed",
+	"--right-sidebar-width-collapsed",
+	"--left-sidebar-width-expanded",
+	"--right-sidebar-width-expanded",
+	"--right-sidebar-right-offset",
+	"--right-sidebar-top-offset",
+	"--right-sidebar-bottom-offset",
+	"--right-sidebar-left-offset",
+	"--left-sidebar-left-offset",
+	"--left-sidebar-top-offset",
+	"--left-sidebar-bottom-offset",
+	"--left-sidebar-right-offset",
+] as const;
+
+export type WireframeCSSVariables = (typeof wireframeCssVariables)[number];
+
+const defaultVars = {
 	"--sticky-nav-height": "calc(var(--spacing) * 12)",
 	"--sticky-nav-top-offset": "calc(var(--spacing) * 0)",
 	"--top-nav-height": "calc(var(--spacing) * 16)",
@@ -55,7 +84,7 @@ const defaultVars: React.CSSProperties = {
 	"--left-sidebar-top-offset": "calc(var(--spacing) * 0)",
 	"--left-sidebar-bottom-offset": "calc(var(--spacing) * 0)",
 	"--left-sidebar-right-offset": "calc(var(--spacing) * 0)",
-} as React.CSSProperties;
+} satisfies Record<WireframeCSSVariables, string> as React.CSSProperties;
 
 const responsiveNavCornersConfig = {
 	navbar: {
@@ -125,7 +154,7 @@ function Wireframe({
 	...props
 }: React.ComponentProps<"div"> & {
 	config?: ClassValue[];
-	cssVariables?: React.CSSProperties;
+	cssVariables?: Record<WireframeCSSVariables, string>;
 	navCorners?: {
 		topLeft?: WireframeCornerOptions;
 		topRight?: WireframeCornerOptions;
@@ -151,7 +180,7 @@ function Wireframe({
 					.right,
 				className,
 			)}
-			style={{ ...(cssVariables ?? defaultVars) }}
+			style={{ ...((cssVariables as React.CSSProperties) ?? defaultVars) }}
 		>
 			<div
 				// INNER WRAPPER TO COVER THE WHOLE AREA
