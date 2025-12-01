@@ -104,7 +104,7 @@ Warning: If you have multiple `<Wireframe/>`s, you can't return a `<Wireframe/>`
 
 ## Nested Wireframes
 
-Nested wireframes are not recommended, but if you need to have nested `<Wireframe/>`s duplicate the `<Wireframe/>` component and rename the namespace `wf`, for all `data-` attirbutes. This will prevent conflicts between the wireframes.
+Nested wireframes are not recommended, but if you need to have nested `<Wireframe/>`s duplicate the `<Wireframe/>` component and rename the namespace `wf`, for all `data-` attirbutes.
 
 Update all instances of the following:
 
@@ -117,3 +117,15 @@ data-wf-content
 ```
 
 In the `<Wireframe/>` config and all the `<Wireframe/>` components.
+
+For example:
+
+```
+data-wf2-${position}-sidebar
+data-wf2-responsive-nav
+data-wf2-${position}-nav
+data-wf2-sticky-nav
+data-wf2-content
+```
+
+This will prevent conflicts between the wireframes.
