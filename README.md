@@ -142,7 +142,7 @@ Here's an example with a blog and a dashboard `<Wireframe/>`:
 ### Blog Wireframe
 
 ```tsx
-// @/components/ui/wireframe/blog-wireframe.tsx
+// @/components/wireframe/blog-wireframe.tsx
 import { Wireframe } from "@/components/ui/wireframe";
 
 export function BlogWireframe({
@@ -201,7 +201,7 @@ export default function Page() {
 ### Dashboard Wireframe
 
 ```tsx
-// @/components/ui/wireframe/dashboard-wireframe.tsx
+// @/components/wireframe/dashboard-wireframe.tsx
 import { Wireframe } from "@/components/ui/wireframe";
 
 export function DashboardWireframe({ children }: { children: React.ReactNode }) {
