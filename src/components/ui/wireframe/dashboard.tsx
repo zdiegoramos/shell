@@ -7,7 +7,7 @@ export function DashboardWireframe({
 }) {
 	return (
 		<Wireframe
-			vars={
+			cssVariables={
 				{
 					"--sticky-nav-height": "calc(var(--spacing) * 12)",
 					"--sticky-nav-offset": "calc(var(--spacing) * 0)",

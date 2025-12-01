@@ -105,13 +105,13 @@ function Wireframe({
 	className,
 	children,
 	config,
-	vars,
+	cssVariables,
 	navCorners,
 	responsiveNavCorners,
 	...props
 }: React.ComponentProps<"div"> & {
 	config?: ClassValue[];
-	vars?: React.CSSProperties;
+	cssVariables?: React.CSSProperties;
 	navCorners?: {
 		topLeft?: WireframeCornerOptions;
 		topRight?: WireframeCornerOptions;
@@ -137,7 +137,7 @@ function Wireframe({
 					.right,
 				className,
 			)}
-			style={{ ...(vars ?? defaultVars) }}
+			style={{ ...(cssVariables ?? defaultVars) }}
 		>
 			<div
 				// INNER WRAPPER TO COVER THE WHOLE AREA

@@ -3,7 +3,7 @@ import { Wireframe } from "@/components/ui/wireframe";
 export function HomeWireframe({ children }: { children: React.ReactNode }) {
 	return (
 		<Wireframe
-			vars={
+			cssVariables={
 				{
 					"--sticky-nav-height": "calc(var(--spacing) * 12)",
 					"--sticky-nav-offset": "calc(var(--spacing) * 0)",

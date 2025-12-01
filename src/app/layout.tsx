@@ -15,13 +15,7 @@ export default function RootLayout({
 	return (
 		<html className="overscroll-none" lang="en" suppressHydrationWarning>
 			<body>
-				<Wireframe
-					responsiveNavCorners={{
-						left: "navbar",
-					}}
-				>
-					{children}
-				</Wireframe>
+				<Wireframe>{children}</Wireframe>
 			</body>
 		</html>
 	);

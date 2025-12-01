@@ -4,21 +4,55 @@ The `<Wireframe/>` component ensures that all elements are positioned correctly 
 
 ## Installation
 
-1. Add the [`wireframe.tsx`](/src/components/ui/wireframe/index.tsx) file to your shadcn ui folder `@/components/ui`
+1. Add the [`wireframe/index.tsx`](/src/components/ui/wireframe/index.tsx) file to your shadcn ui folder `@/components/ui`
 
-2. Set the desired dimensions and offsets for your wireframe in the style tag of the `<Wireframe>` component.
+2. Add the responsive nav breakpoint variable to your TailwindCSS configuration.
+
+```css
+@theme {
+	--breakpoint-wf-responsive-nav: 40rem;
+}
+```
+
+This controls when at which breakpoint the responsive nav moves from the bottom to the top
+
+3. Set the desired dimensions and offsets for your wireframe in the style tag of the `<Wireframe>` component. You can also configue how the corners will be handled. Settings these values is optional. If you set a value it will overwrite the default value.
 
 ```tsx
-	"--sticky-nav-height": "calc(var(--spacing) * 12)",
-	"--sticky-nav-offset": "calc(var(--spacing) * 0)",
-	"--top-nav-height": "calc(var(--spacing) * 16)",
-	"--top-nav-offset": "calc(var(--spacing) * 0)",
-	"--bottom-nav-height": "calc(var(--spacing) * 8)",
-	"--bottom-nav-offset": "calc(var(--spacing) * 0)",
-	"--left-sidebar-width-collapsed": "calc(var(--spacing) * 16)",
-	"--right-sidebar-width-collapsed": "calc(var(--spacing) * 16)",
-	"--left-sidebar-width-expanded": "calc(var(--spacing) * 52)",
-	"--right-sidebar-width-expanded": "calc(var(--spacing) * 52)",
+import { Wireframe } from "@/components/ui/wireframe";
+
+export function HomeWireframe({ children }: { children: React.ReactNode }) {
+	return (
+		<Wireframe
+			navCorners={{
+				bottomLeft: "navbar",
+				bottomRight: "navbar",
+				topLeft: "sidebar",
+				topRight: "sidebar",
+			}}
+			responsiveNavCorners={{
+				left: "navbar",
+				right: "sidebar",
+			}}
+			cssVariables={
+				{
+					"--sticky-nav-height": "calc(var(--spacing) * 12)",
+					"--sticky-nav-offset": "calc(var(--spacing) * 0)",
+					"--top-nav-height": "calc(var(--spacing) * 16)",
+					"--top-nav-offset": "calc(var(--spacing) * 0)",
+					"--bottom-nav-height": "calc(var(--spacing) * 8)",
+					"--bottom-nav-offset": "calc(var(--spacing) * 0)",
+					"--left-sidebar-width-collapsed": "calc(var(--spacing) * 16)",
+					"--right-sidebar-width-collapsed": "calc(var(--spacing) * 16)",
+					"--left-sidebar-width-expanded": "calc(var(--spacing) * 52)",
+					"--right-sidebar-width-expanded": "calc(var(--spacing) * 52)",
+				} as React.CSSProperties
+			}
+		>
+			{children}
+		</Wireframe>
+	);
+}
 ```
 
 ## Usage
@@ -77,25 +111,69 @@ export default function Page() {
 The `<Wireframe/>` components are self contained so you can create multiple wireframes with differrent variables. You may define them using this naming convention `{name}-wireframe.tsx`. This is useful, if for example, you want your navbar to have an offset in the landing page, and also have another navbar in your dashboard page with no offset.
 
 ```tsx
+// @/components/ui/home-wireframe.tsx
+import { Wireframe } from "@/components/ui/wireframe";
+
+export function HomeWireframe({
+	children,
+}: {
+	children: React.ReactNode;
+}) {
+	return (
+		<Wireframe
+			cssVariables={
+				{
+					"--sticky-nav-height": "calc(var(--spacing) * 12)",
+					// ...
+				} as React.CSSProperties
+			}
+		>
+			{children}
+		</Wireframe>
+	);
+}
+```
+
+```tsx
 // Home page.tsx
-import { Wireframe } from "@/components/ui/home-wireframe";
+import { HomeWireframe } from "@/components/ui/home-wireframe";
 
 export default function Page() {
 	return (
-		<Wireframe>{children}</Wireframe>
+		<HomeWireframe>{children}</HomeWireframe>
+	);
+}
+```
+
+```tsx
+// @/components/ui/dashboard-wireframe
+import { Wireframe } from "@/components/ui/wireframe";
+
+export function DashboardWireframe({ children }: { children: React.ReactNode }) {
+	return (
+		<Wireframe
+			cssVariables={
+				{
+					"--sticky-nav-height": "calc(var(--spacing) * 12)",
+					// ...
+				} as React.CSSProperties
+			}
+		>
+			{children}
+		</Wireframe>
 	);
 }
 ```
 
 ```tsx layout.tsx
 // Dashboard layout.tsx
-import { Wireframe } from "@/components/ui/dashboard-wireframe";
+import { DashboardWireframe } from "@/components/ui/dashboard-wireframe";
 
 export default function Layout({
 	children,
 }: Readonly<{ children: React.ReactNode }>) {
 	return (
-		<Wireframe>{children}</Wireframe>
+		<DashboardWireframe>{children}</DashboardWireframe>
 	);
 }
 ```
