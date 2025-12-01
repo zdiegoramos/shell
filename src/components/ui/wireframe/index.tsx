@@ -26,8 +26,6 @@ const defaultConfig: ClassValue[] = [
 	"has-data-wf-top-nav:**:data-wf-content:min-h-[calc(100vh-var(--top-nav-height)-var(--top-nav-top-offset)-var(--top-nav-bottom-offset))]",
 	"has-data-wf-bottom-nav:**:data-wf-content:min-h-[calc(100vh-var(--bottom-nav-height)-var(--bottom-nav-bottom-offset)-var(--bottom-nav-top-offset))]",
 	"has-data-wf-responsive-nav:**:data-wf-content:min-h-[calc(100vh-var(--bottom-nav-height)-var(--bottom-nav-bottom-offset)-var(--bottom-nav-top-offset))] min-wf-responsive-nav:has-data-wf-responsive-nav:**:data-wf-content:min-h-[calc(100vh-var(--top-nav-height)-var(--top-nav-top-offset)-var(--top-nav-bottom-offset))]",
-
-	"relative",
 ];
 
 const wireframeCssVariables = [
@@ -188,17 +186,9 @@ function Wireframe({
 	);
 }
 
-function WireframeContent({
-	children,
-	className,
-	...props
-}: React.ComponentProps<"div">) {
+function WireframeContent({ children, ...props }: React.ComponentProps<"div">) {
 	return (
-		<div
-			className={cn("absolute h-full", className)}
-			data-wf-content
-			{...props}
-		>
+		<div data-wf-content {...props}>
 			{children}
 		</div>
 	);
