@@ -14,7 +14,7 @@ The `<Wireframe/>` component makes the content of your website adjust to positio
 }
 ```
 
-This controls when at which [breakpoint](https://tailwindcss.com/docs/responsive-design#overview) the responsive nav moves from the bottom to the top
+This controls at which [breakpoint](https://tailwindcss.com/docs/responsive-design#overview) the responsive nav moves from the bottom to the top
 
 3. Configure your `<Wireframe>`.
 
