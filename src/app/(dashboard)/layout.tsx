@@ -9,14 +9,8 @@ export const metadata: Metadata = {
 	icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
-export default function RootLayout({
+export default function Layout({
 	children,
 }: Readonly<{ children: React.ReactNode }>) {
-	return (
-		<html className="overscroll-none" lang="en" suppressHydrationWarning>
-			<body>
-				<DashboardWireframe>{children}</DashboardWireframe>
-			</body>
-		</html>
-	);
+	return <DashboardWireframe>{children}</DashboardWireframe>;
 }
