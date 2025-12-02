@@ -257,15 +257,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
 ### Nested Wireframes
 
-> **Warning:** Nested wireframes are not recommended. If required, duplicate `wireframe.tsx` and change the namespace for all `data-` attributes.
+Wireframe must not be nested because navbars and sidebars are positioned using `position: fixed` and `position: sticky`, which are relative to the viewport, not the parent element.
 
-Change these attributes throughout the file:
-- `data-wf-${position}-sidebar` → `data-wf2-${position}-sidebar`
-- `data-wf-responsive-nav` → `data-wf2-responsive-nav`
-- `data-wf-${position}-nav` → `data-wf2-${position}-nav`
-- `data-wf-sticky-nav` → `data-wf2-sticky-nav`
-
-This prevents attribute conflicts between nested wireframes.
+This means you only need one `<Wireframe>` per page. If you need different configurations for different pages, use multiple wireframe instances at the layout level as shown in the previous section.
 
 ## Caveats
 
