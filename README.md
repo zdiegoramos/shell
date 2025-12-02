@@ -100,20 +100,39 @@ Customize dimensions and spacing by passing `cssVariables`. All values shown are
 ```tsx
 <Wireframe
 	cssVariables={{
-		// Sticky nav
+		// STICKY NAV
 		"--sticky-nav-height": "calc(var(--spacing) * 12)",
 		"--sticky-nav-top-offset": "calc(var(--spacing) * 0)",
 
-		// Top/bottom navs
+		// TOP NAV
 		"--top-nav-height": "calc(var(--spacing) * 16)",
-		"--bottom-nav-height": "calc(var(--spacing) * 8)",
-		// Each nav has: left-offset, right-offset, top-offset, bottom-offset
+		"--top-nav-left-offset": "calc(var(--spacing) * 0)",
+		"--top-nav-right-offset": "calc(var(--spacing) * 0)",
+		"--top-nav-top-offset": "calc(var(--spacing) * 0)",
+		"--top-nav-bottom-offset": "calc(var(--spacing) * 0)",
 
-		// Sidebars
+		// BOTTOM NAV
+		"--bottom-nav-height": "calc(var(--spacing) * 8)",
+		"--bottom-nav-left-offset": "calc(var(--spacing) * 0)",
+		"--bottom-nav-right-offset": "calc(var(--spacing) * 0)",
+		"--bottom-nav-top-offset": "calc(var(--spacing) * 0)",
+		"--bottom-nav-bottom-offset": "calc(var(--spacing) * 0)",
+
+		// LEFT SIDEBAR
 		"--left-sidebar-width-collapsed": "calc(var(--spacing) * 16)",
 		"--left-sidebar-width-expanded": "calc(var(--spacing) * 52)",
-		// Each sidebar has: left-offset, right-offset, top-offset, bottom-offset
-		// Same variables exist for right-sidebar
+		"--left-sidebar-left-offset": "calc(var(--spacing) * 0)",
+		"--left-sidebar-right-offset": "calc(var(--spacing) * 0)",
+		"--left-sidebar-top-offset": "calc(var(--spacing) * 0)",
+		"--left-sidebar-bottom-offset": "calc(var(--spacing) * 0)",
+
+		// RIGHT SIDEBAR
+		"--right-sidebar-width-expanded": "calc(var(--spacing) * 52)",
+		"--right-sidebar-width-collapsed": "calc(var(--spacing) * 16)",
+		"--right-sidebar-left-offset": "calc(var(--spacing) * 0)",
+		"--right-sidebar-right-offset": "calc(var(--spacing) * 0)",
+		"--right-sidebar-top-offset": "calc(var(--spacing) * 0)",
+		"--right-sidebar-bottom-offset": "calc(var(--spacing) * 0)",
 	}}
 >
 	{children}
@@ -212,6 +231,15 @@ export function DashboardWireframe({ children }: { children: React.ReactNode }) 
 			{children}
 		</Wireframe>
 	);
+}
+```
+
+```tsx
+// app/(dashboard)/layout.tsx
+import { DashboardWireframe } from "@/components/wireframe/dashboard-wireframe";
+
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+	return <DashboardWireframe>{children}</DashboardWireframe>;
 }
 ```
 
