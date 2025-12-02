@@ -1,10 +1,9 @@
-import { WireframeContent } from "@/components/ui/wireframe";
 import { Sidebar } from "@/components/wireframe/sidebar";
 import { StickyNav } from "@/components/wireframe/sticky-nav";
 
 export default function Page() {
 	return (
-		<WireframeContent className="bg-(image:--crossed-gradient) static flex min-h-full flex-col items-center justify-center">
+		<div className="bg-(image:--crossed-gradient)">
 			<div className="bg-(image:--crossed-gradient) flex h-20 w-full items-center justify-center bg-green-600/40">
 				<div className="border-2 border-black bg-white px-2 font-bold">
 					HEADER
@@ -62,6 +61,6 @@ export default function Page() {
 				incidunt est omnis optio, facilis expedita. Aperiam laboriosam est ex
 				amet, magni hic quod dolore nobis voluptates porro numquam.
 			</div>
-		</WireframeContent>
+		</div>
 	);
 }

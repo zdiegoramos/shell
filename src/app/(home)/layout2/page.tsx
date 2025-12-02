@@ -1,15 +1,14 @@
-import { WireframeContent } from "@/components/ui/wireframe";
 import { BottomNav } from "@/components/wireframe/bottom-nav";
 import { SidebarStatic } from "@/components/wireframe/sidebar-static";
 import { TopNav } from "@/components/wireframe/top-nav";
 
 export default function Page() {
 	return (
-		<WireframeContent className="bg-(image:--crossed-gradient)">
+		<div className="bg-(image:--crossed-gradient)">
 			<TopNav />
 			<SidebarStatic />
 			<BottomNav />
-			<div className="h-full border-2 border-black bg-white px-2 font-bold">
+			<div className="border-2 border-black bg-white px-2 font-bold">
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic eos
 				ratione dolor debitis cumque nostrum inventore laboriosam voluptate
 				minima sint maxime re quisquam velit repellendus quos. Tempora quaerat
@@ -40,6 +39,6 @@ export default function Page() {
 				laboriosam est ex amet, magni hic quod dolore nobis voluptates porro
 				numquam.
 			</div>
-		</WireframeContent>
+		</div>
 	);
 }

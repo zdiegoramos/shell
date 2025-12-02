@@ -2,7 +2,7 @@ import {
 	DynamicWireframeVariables,
 	type WireframeCSSVariables,
 } from "@/components/dynamic-css-variables";
-import { WireframeContent } from "@/components/ui/wireframe";
+
 import { ResponsiveNav } from "@/components/wireframe/responsive-nav";
 import { Sidebar } from "@/components/wireframe/sidebar";
 
@@ -18,7 +18,7 @@ export default function Page() {
 
 	return (
 		<DynamicWireframeVariables wireframeConfig={wireframeConfig}>
-			<WireframeContent className="bg-(image:--crossed-gradient) flex min-h-full flex-col items-center justify-center">
+			<div className="bg-(image:--crossed-gradient)">
 				<ResponsiveNav />
 				<Sidebar />
 				<div className="border-2 border-black bg-white px-2 font-bold">
@@ -73,7 +73,7 @@ export default function Page() {
 					est omnis optio, facilis expedita. Aperiam laboriosam est ex amet,
 					magni hic quod dolore nobis voluptates porro numquam.
 				</div>
-			</WireframeContent>
+			</div>
 		</DynamicWireframeVariables>
 	);
 }

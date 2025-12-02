@@ -6,7 +6,7 @@ const defaultConfig: ClassValue[] = [
 	"has-data-wf-top-nav:mt-[calc(var(--top-nav-height)+var(--top-nav-top-offset)+var(--top-nav-bottom-offset))]",
 
 	// HAS BOTTOM NAV, ADD BOTTOM MARGIN WIREFRAME CONTENT
-	"has-data-wf-bottom-nav:**:data-wf-content:mb-[calc(var(--bottom-nav-height)+var(--bottom-nav-bottom-offset)+var(--bottom-nav-top-offset))]",
+	"has-data-wf-bottom-nav:mb-[calc(var(--bottom-nav-height)+var(--bottom-nav-bottom-offset)+var(--bottom-nav-top-offset))]",
 
 	// HAS LEFT SIDEBAR=EXPANDED, ADD LEFT MARGIN WIREFRAME CONTENT
 	"has-data-[wf-left-sidebar=expanded]:ml-[calc(var(--left-sidebar-width-expanded)+var(--left-sidebar-left-offset)+var(--left-sidebar-right-offset))]",
@@ -18,20 +18,23 @@ const defaultConfig: ClassValue[] = [
 	"has-data-[wf-right-sidebar=collapsed]:mr-[calc(var(--right-sidebar-width-collapsed)+var(--right-sidebar-right-offset)+var(--right-sidebar-left-offset))]",
 
 	// HAS RESPONSIVE NAV, AND VIEWPORT IS MOBILE, ADD BOTTOM MARGINS
-	"has-data-wf-responsive-nav:**:data-wf-content:mb-[calc(var(--bottom-nav-height)+var(--bottom-nav-bottom-offset)+var(--bottom-nav-top-offset))]",
+	"has-data-wf-responsive-nav:mb-[calc(var(--bottom-nav-height)+var(--bottom-nav-bottom-offset)+var(--bottom-nav-top-offset))]",
 	// HAS RESPONSIVE NAV, AND VIEWPORT IS DESKTOP, ADD TOP MARGINS
-	"min-wf-responsive-nav:has-data-wf-responsive-nav:mt-[calc(var(--top-nav-height)+var(--top-nav-top-offset)+var(--top-nav-bottom-offset))] min-wf-responsive-nav:has-data-wf-responsive-nav:**:data-wf-content:mb-0",
+	"min-wf-responsive-nav:has-data-wf-responsive-nav:mt-[calc(var(--top-nav-height)+var(--top-nav-top-offset)+var(--top-nav-bottom-offset))] min-wf-responsive-nav:has-data-wf-responsive-nav:mb-0",
 
 	// HAS TOP AND BOTTOM NAV, SET WIREFRAME CONTENT MIN HEIGHT
-	"has-data-wf-top-nav:has-data-wf-bottom-nav:**:data-wf-content:min-h-[calc(100vh-var(--top-nav-height)-var(--bottom-nav-height)-var(--top-nav-top-offset)-var(--bottom-nav-bottom-offset)-var(--top-nav-bottom-offset)-var(--bottom-nav-top-offset))]",
+	"has-data-wf-top-nav:has-data-wf-bottom-nav:min-h-[calc(100vh-var(--top-nav-height)-var(--bottom-nav-height)-var(--top-nav-top-offset)-var(--bottom-nav-bottom-offset)-var(--top-nav-bottom-offset)-var(--bottom-nav-top-offset))]",
 	// HAS ONLY TOP NAV, SET WIREFRAME CONTENT MIN HEIGHT
-	"has-data-wf-top-nav:**:data-wf-content:min-h-[calc(100vh-var(--top-nav-height)-var(--top-nav-top-offset)-var(--top-nav-bottom-offset))]",
+	"has-data-wf-top-nav:min-h-[calc(100vh-var(--top-nav-height)-var(--top-nav-top-offset)-var(--top-nav-bottom-offset))]",
 	// HAS ONLY BOTTOM NAV, SET WIREFRAME CONTENT MIN HEIGHT
-	"has-data-wf-bottom-nav:**:data-wf-content:min-h-[calc(100vh-var(--bottom-nav-height)-var(--bottom-nav-bottom-offset)-var(--bottom-nav-top-offset))]",
+	"has-data-wf-bottom-nav:min-h-[calc(100vh-var(--bottom-nav-height)-var(--bottom-nav-bottom-offset)-var(--bottom-nav-top-offset))]",
 	// HAS RESPONSIVE NAV, AND VIEWPORT IS MOBILE, SET WIREFRAME CONTENT MIN HEIGHT
-	"has-data-wf-responsive-nav:**:data-wf-content:min-h-[calc(100vh-var(--bottom-nav-height)-var(--bottom-nav-bottom-offset)-var(--bottom-nav-top-offset))]",
+	"has-data-wf-responsive-nav:min-h-[calc(100vh-var(--bottom-nav-height)-var(--bottom-nav-bottom-offset)-var(--bottom-nav-top-offset))]",
 	// HAS RESPONSIVE NAV, AND VIEWPORT IS DESKTOP, SET WIREFRAME CONTENT MIN HEIGHT
-	"min-wf-responsive-nav:has-data-wf-responsive-nav:**:data-wf-content:min-h-[calc(100vh-var(--top-nav-height)-var(--top-nav-top-offset)-var(--top-nav-bottom-offset))]",
+	"min-wf-responsive-nav:has-data-wf-responsive-nav:min-h-[calc(100vh-var(--top-nav-height)-var(--top-nav-top-offset)-var(--top-nav-bottom-offset))]",
+
+	// MAKE THE WIREFRAME ROOT RELATIVE TO ALLOW CHILDREN TO BE ABSOLUTE POSITIONED IF NEEDED
+	"relative",
 ];
 
 const wireframeCssVariables = [
@@ -232,14 +235,6 @@ function Wireframe({
 	);
 }
 
-function WireframeContent({ children, ...props }: React.ComponentProps<"div">) {
-	return (
-		<div data-wf-content {...props}>
-			{children}
-		</div>
-	);
-}
-
 function WireframeStickyNav({
 	className,
 	children,
@@ -349,7 +344,6 @@ function WireframeCollapsableSidebar({
 export {
 	Wireframe,
 	WireframeNav,
-	WireframeContent,
 	WireframeStickyNav,
 	WireframeResponsiveNav,
 	WireframeCollapsableSidebar,

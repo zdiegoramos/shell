@@ -1,10 +1,9 @@
-import { WireframeContent } from "@/components/ui/wireframe";
 import { BottomNav } from "@/components/wireframe/bottom-nav";
 import { TopNav } from "@/components/wireframe/top-nav";
 
 export default function Page() {
 	return (
-		<WireframeContent className="bg-(image:--crossed-gradient) flex min-h-full flex-col items-center justify-center">
+		<div className="bg-(image:--crossed-gradient)">
 			<TopNav />
 			<BottomNav />
 			<div className="border-2 border-black bg-white px-2 font-bold">
@@ -57,6 +56,6 @@ export default function Page() {
 				incidunt est omnis optio, facilis expedita. Aperiam laboriosam est ex
 				amet, magni hic quod dolore nobis voluptates porro numquam.
 			</div>
-		</WireframeContent>
+		</div>
 	);
 }

@@ -12,5 +12,5 @@ export const metadata: Metadata = {
 export default function Layout({
 	children,
 }: Readonly<{ children: React.ReactNode }>) {
-	return <Wireframe>{children}</Wireframe>;
+	return <Wireframe className="bg-amber-200">{children}</Wireframe>;
 }

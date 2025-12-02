@@ -49,11 +49,11 @@ export default function RootLayout({
 
 ```tsx
 // app/page.tsx
-import { WireframeContent, WireframeNav } from "@/components/ui/wireframe";
+import { WireframeNav } from "@/components/ui/wireframe";
 
 export default function Page() {
 	return (
-		<WireframeContent>
+		<>
 			<WireframeNav position="top">
 				<div className="flex h-full items-center justify-between px-4">
 					<div>Logo</div>
@@ -63,7 +63,7 @@ export default function Page() {
 			<div className="p-4">
 				{/* Your content - margins adjust automatically */}
 			</div>
-		</WireframeContent>
+		</>
 	);
 }
 ```
@@ -167,10 +167,6 @@ Root component that provides context. Wrap your app at the layout level.
   Record<WireframeCSSVariables, string>
   ```
 
-### `<WireframeContent>`
-
-Wrapper for your page content. Automatically adjusts margins based on active navbars/sidebars.
-
 ### `<WireframeNav>`
 
 Fixed navbar component.
@@ -269,6 +265,5 @@ Change these attributes throughout the file:
 - `data-wf-responsive-nav` → `data-wf2-responsive-nav`
 - `data-wf-${position}-nav` → `data-wf2-${position}-nav`
 - `data-wf-sticky-nav` → `data-wf2-sticky-nav`
-- `data-wf-content` → `data-wf2-content`
 
 This prevents attribute conflicts between nested wireframes.
