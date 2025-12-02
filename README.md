@@ -79,14 +79,14 @@ Control which element occupies each corner when navbars and sidebars overlap:
 ```tsx
 <Wireframe
 	navCorners={{
-		topLeft: "sidebar",    // or "navbar"
+		topLeft: "sidebar",
 		topRight: "sidebar",
 		bottomLeft: "navbar",
 		bottomRight: "navbar",
 	}}
 	responsiveNavCorners={{
-		left: "navbar",   // Controls left corners on mobile
-		right: "sidebar", // Controls right corners on mobile
+		left: "navbar",  
+		right: "sidebar",
 	}}
 >
 	{children}
@@ -146,9 +146,26 @@ Customize dimensions and spacing by passing `cssVariables`. All values shown are
 Root component that provides context. Wrap your app at the layout level.
 
 **Props:**
-- `navCorners`: Control corner behavior for fixed navs
-- `responsiveNavCorners`: Control corner behavior for responsive nav
-- `cssVariables`: Override default dimensions and spacing
+- `navCorners?` - Control corner behavior for fixed navs
+  ```tsx
+  {
+    topLeft?: "navbar" | "sidebar";
+    topRight?: "navbar" | "sidebar";
+    bottomLeft?: "navbar" | "sidebar";
+    bottomRight?: "navbar" | "sidebar";
+  }
+  ```
+- `responsiveNavCorners?` - Control corner behavior for responsive nav
+  ```tsx
+  {
+    left?: "navbar" | "sidebar";
+    right?: "navbar" | "sidebar";
+  }
+  ```
+- `cssVariables?` - Override default dimensions and spacing
+  ```tsx
+  Record<WireframeCSSVariables, string>
+  ```
 
 ### `<WireframeContent>`
 
