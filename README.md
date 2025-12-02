@@ -267,3 +267,29 @@ Change these attributes throughout the file:
 - `data-wf-sticky-nav` → `data-wf2-sticky-nav`
 
 This prevents attribute conflicts between nested wireframes.
+
+## Caveats
+
+### Full-Height Content
+
+Setting `height: 100%` won't work on child content. The `<Wireframe>` root is `position: relative`, use `absolute inset-0` to fill the viewport, instead of `h-full`:
+
+```tsx
+<Wireframe>
+  <WireframeNav position="top">
+    <div>Navigation</div>
+  </WireframeNav>
+  
+	{ /* WILL NOT WORK */ }
+	{ /* <div className="h-full"> */ }
+
+  {/* Content that fills the entire viewport */}
+  <div className="absolute inset-0">
+		{/* Your content here */}
+  </div>
+</Wireframe>
+```
+
+**Use cases:** Vertically centered layouts.
+
+**Note:** You'll need to handle overflow and scrolling manually when using `absolute inset-0`.
