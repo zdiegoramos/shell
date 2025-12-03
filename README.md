@@ -70,69 +70,75 @@ export default function Page() {
 
 ## Configuration
 
-All configuration is optional and uses sensible defaults.
+All configuration is optional and uses sensible defaults. Configuration is passed via a single `config` prop.
 
 ### Corner Behavior
 
-Control which element occupies each corner when navbars and sidebars overlap:
+Control which element occupies each corner when navbars and sidebars overlap. Default is `"sidebar"` for all corners.
 
 ```tsx
 <Wireframe
-	navCorners={{
-		topLeft: "sidebar",
-		topRight: "sidebar",
-		bottomLeft: "navbar",
-		bottomRight: "navbar",
-	}}
-	responsiveNavCorners={{
-		left: "navbar",  
-		right: "sidebar",
+	config={{
+		corners: {
+			topLeft: "sidebar",
+			topRight: "sidebar",
+			bottomLeft: "sidebar",
+			bottomRight: "sidebar",
+			responsive: {
+				left: "sidebar",
+				right: "sidebar",
+			},
+		},
 	}}
 >
 	{children}
 </Wireframe>
 ```
 
+Note: You can only configure both corners on each side (left/right) for responsive navs.
+
 ### CSS Variables
 
-Customize dimensions and spacing by passing `cssVariables`. All values shown are defaults:
+Customize dimensions and spacing by passing `config.cssVariables`. All values shown are defaults:
 
 ```tsx
 <Wireframe
-	cssVariables={{
-		// STICKY NAV
-		"--sticky-nav-height": 12,
-		"--sticky-nav-top-offset": 0,
+	config={{
+		cssVariables: {
+			// STICKY NAV
+			"--sticky-nav-height": 12,
+			"--sticky-nav-top-offset": 0,
 
-		// TOP NAV
-		"--top-nav-height": 16,
-		"--top-nav-left-offset": 0,
-		"--top-nav-right-offset": 0,
-		"--top-nav-top-offset": 0,
-		"--top-nav-bottom-offset": 0,
+			// TOP NAV
+			"--top-nav-height": 16,
+			"--top-nav-left-offset": 0,
+			"--top-nav-right-offset": 0,
+			"--top-nav-top-offset": 0,
+			"--top-nav-bottom-offset": 0,
 
-		// BOTTOM NAV
-		"--bottom-nav-height": 8,
-		"--bottom-nav-left-offset": 0,
-		"--bottom-nav-right-offset": 0,
-		"--bottom-nav-top-offset": 0,
-		"--bottom-nav-bottom-offset": 0,
+			// BOTTOM NAV
+			"--bottom-nav-height": 8,
+			"--bottom-nav-left-offset": 0,
+			"--bottom-nav-right-offset": 0,
+			"--bottom-nav-top-offset": 0,
+			"--bottom-nav-bottom-offset": 0,
 
-		// LEFT SIDEBAR
-		"--left-sidebar-width-collapsed": 16,
-		"--left-sidebar-width-expanded": 52,
-		"--left-sidebar-left-offset": 0,
-		"--left-sidebar-right-offset": 0,
-		"--left-sidebar-top-offset": 0,
-		"--left-sidebar-bottom-offset": 0,
+			// LEFT SIDEBAR
+			"--left-sidebar-width-collapsed": 16,
+			"--left-sidebar-width-expanded": 52,
+			"--left-sidebar-left-offset": 0,
+			"--left-sidebar-right-offset": 0,
+			"--left-sidebar-top-offset": 0,
+			"--left-sidebar-bottom-offset": 0,
 
-		// RIGHT SIDEBAR
-		"--right-sidebar-width-expanded": 52,
-		"--right-sidebar-width-collapsed": 16,
-		"--right-sidebar-left-offset": 0,
-		"--right-sidebar-right-offset": 0,
-		"--right-sidebar-top-offset": 0,
-		"--right-sidebar-bottom-offset": 0,
+			// RIGHT SIDEBAR
+			"--right-sidebar-width-expanded": 52,
+			"--right-sidebar-width-collapsed": 16,
+			"--right-sidebar-left-offset": 0,
+			"--right-sidebar-right-offset": 0,
+			"--right-sidebar-top-offset": 0,
+			"--right-sidebar-bottom-offset": 0,
+		},
 	}}
 >
 	{children}
@@ -148,26 +154,24 @@ Note: Numeric values are multiplied by [tailwindcss `--spacing`](https://tailwin
 Root component that provides context. Wrap your app at the layout level.
 
 **Props:**
-- `navCorners?` - Control corner behavior for fixed navs
-  ```tsx
-  {
-    topLeft?: "navbar" | "sidebar";
-    topRight?: "navbar" | "sidebar";
-    bottomLeft?: "navbar" | "sidebar";
-    bottomRight?: "navbar" | "sidebar";
-  }
-  ```
-- `responsiveNavCorners?` - Control corner behavior for responsive nav
-  ```tsx
-  {
-    left?: "navbar" | "sidebar";
-    right?: "navbar" | "sidebar";
-  }
-  ```
-- `cssVariables?` - Override default dimensions and spacing
-  ```tsx
-  Record<WireframeCSSVariables, string | number>
-  ```
+- `config?` - Configuration object with the following optional properties:
+  - `corners?` - Control corner behavior for fixed and responsive navs
+    ```tsx
+    {
+      topLeft?: "navbar" | "sidebar";      // default: "sidebar"
+      topRight?: "navbar" | "sidebar";     // default: "sidebar"
+      bottomLeft?: "navbar" | "sidebar";   // default: "sidebar"
+      bottomRight?: "navbar" | "sidebar";  // default: "sidebar"
+      responsive?: {
+        left?: "navbar" | "sidebar";       // default: "sidebar"
+        right?: "navbar" | "sidebar";      // default: "sidebar"
+      };
+    }
+    ```
+  - `cssVariables?` - Override default dimensions and spacing
+    ```tsx
+    Partial<Record<WireframeCSSVariables, string | number>>
+    ```
 
 ### `<WireframeNav>`
 
@@ -208,13 +212,15 @@ import { Wireframe } from "@/components/ui/wireframe";
 export function BlogWireframe({ children }: { children: React.ReactNode }) {
 	return (
 		<Wireframe
-			cssVariables={{
-				// STICKY NAV
-				"--sticky-nav-height": 12,
+			config={{
+				cssVariables: {
+					// STICKY NAV
+					"--sticky-nav-height": 12,
 
-				// LEFT SIDEBAR
-				"--left-sidebar-width-collapsed": 16,
-				"--left-sidebar-width-expanded": 52,
+					// LEFT SIDEBAR
+					"--left-sidebar-width-collapsed": 16,
+					"--left-sidebar-width-expanded": 52,
+				},
 			}}
 		>
 			{children}
@@ -241,16 +247,18 @@ import { Wireframe } from "@/components/ui/wireframe";
 export function DashboardWireframe({ children }: { children: React.ReactNode }) {
 	return (
 		<Wireframe
-			cssVariables={{
-				// TOP NAV
-				"--top-nav-height": 16,
+			config={{
+				cssVariables: {
+					// TOP NAV
+					"--top-nav-height": 16,
 
-				// BOTTOM NAV
-				"--bottom-nav-height": 8,
+					// BOTTOM NAV
+					"--bottom-nav-height": 8,
 
-				// LEFT SIDEBAR
-				"--left-sidebar-width-collapsed": 16,
-				"--left-sidebar-width-expanded": 52,
+					// LEFT SIDEBAR
+					"--left-sidebar-width-collapsed": 16,
+					"--left-sidebar-width-expanded": 52,
+				},
 			}}
 		>
 			{children}

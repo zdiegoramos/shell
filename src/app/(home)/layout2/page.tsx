@@ -113,7 +113,7 @@ export default function Page() {
 						<div className="flex gap-4">
 							{Array.from({ length: 20 }, (_, i) => (
 								<div
-									className="flex h-32 w-48 flex-shrink-0 items-center justify-center rounded-lg bg-red-200 font-bold text-red-900"
+									className="flex h-32 w-48 shrink-0 items-center justify-center rounded-lg bg-red-200 font-bold text-red-900"
 									key={nanoid()}
 								>
 									Card {i + 1}
