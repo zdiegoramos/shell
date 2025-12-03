@@ -166,7 +166,7 @@ Root component that provides context. Wrap your app at the layout level.
   ```
 - `cssVariables?` - Override default dimensions and spacing
   ```tsx
-  Record<WireframeCSSVariables, string>
+  Record<WireframeCSSVariables, string | number>
   ```
 
 ### `<WireframeNav>`
