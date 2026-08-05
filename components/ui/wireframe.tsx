@@ -123,6 +123,11 @@ const defaultConfig: ClassValue[] = [
 	// HAS ONLY BOTTOM NAV, SET WIREFRAME CONTENT MIN HEIGHT
 	"has-data-wf-bottom-nav:min-h-[calc(100dvh-var(--bottom-nav-height)-var(--bottom-nav-bottom-offset)-var(--bottom-nav-top-offset)-env(safe-area-inset-bottom))]",
 
+	// HAS TOP NAV, OFFSET HASH-LINK TARGETS TO AVOID NAV OVERLAP
+	"has-data-wf-top-nav:**:[[id]]:scroll-mt-[calc(var(--top-nav-height)+var(--top-nav-top-offset)+var(--top-nav-bottom-offset)+env(safe-area-inset-top)+(--spacing(4)))]",
+	// HAS STICKY NAV, OFFSET HASH-LINK TARGETS TO AVOID NAV OVERLAP
+	"has-data-wf-sticky-nav:**:[[id]]:scroll-mt-[calc(var(--sticky-nav-height)+var(--sticky-nav-top-offset)+env(safe-area-inset-top)+(--spacing(4)))]",
+
 	// MAKE THE WIREFRAME ROOT RELATIVE TO ALLOW CHILDREN TO BE ABSOLUTE POSITIONED IF NEEDED
 	"relative",
 ];
